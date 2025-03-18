@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "328544621563",
+    "project_id": "absengeura",
+    "storage_bucket": "absengeura.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:328544621563:android:41260a5a0fd5a6d795315e",
+        "android_client_info": {
+          "package_name": "com.saliim.absengeura"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDfuwqi9FHy9Ja1OoeGKSmXY40x9Pa8dm0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
