@@ -1,9 +1,18 @@
-import 'package:absen_geura/pages/login_screen.dart';
+import 'package:absen_geura/pages/auth_screen/login_screen.dart';
+import 'package:absen_geura/pages/auth_screen/register_screen.dart';
+import 'package:absen_geura/pages/main_screen.dart';
+import 'package:absen_geura/service/firebase/firebase_options.dart';
 import 'package:absen_geura/service/provider/absen_provider.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform
+  );
+  
   runApp(MultiProvider(
     providers: [
       Provider(create: (context) => AbsenProvider(),)
@@ -23,7 +32,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: LoginScreen(),
+      initialRoute: "/login",
+      routes: {
+        "/" : (context) => MainScreen(),
+        "/register" : (context) => RegisterScreen(),
+        "/login" : (context) => LoginScreen(),
+      }
     );
   }
 }

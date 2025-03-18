@@ -1,14 +1,17 @@
+import 'package:absen_geura/pages/auth_screen/widgets/loading_widget.dart';
+import 'package:absen_geura/pages/main_screen.dart';
+import 'package:absen_geura/service/firebase/auth_service.dart';
 import 'package:absen_geura/utils/app_color.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class LoginScreen extends StatefulWidget {
-  const LoginScreen({super.key});
+class LoginScreen extends StatelessWidget {
+  LoginScreen({super.key});
 
-  @override
-  State<LoginScreen> createState() => _LoginScreenState();
-}
+  final TextEditingController _emailCont = TextEditingController();
+  final TextEditingController _passwordCont = TextEditingController();
+  final AuthService authService = AuthService();
 
-class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,6 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: Column(
                         children: [
                           TextField(
+                            controller: _emailCont,
                             decoration: InputDecoration(
                               border: InputBorder.none,
                               hintText: "Your Email/id",
@@ -76,6 +80,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             color: Colors.grey.shade300,
                           ),
                           TextField(
+                            controller: _passwordCont,
                             obscureText: true,
                             decoration: InputDecoration(
                               border: InputBorder.none,
@@ -118,8 +123,20 @@ class _LoginScreenState extends State<LoginScreen> {
                       child: SizedBox(
                         height: 50,
                         child: ElevatedButton(
-                          onPressed: () {
-                            
+                          onPressed: () async{
+                            // showLoadingDialog(context);
+                            User? user = await authService.signInWithEmailAndPassword(
+                              context,
+                              _emailCont.text,
+                              _passwordCont.text,
+                            );
+                            // hideLoadingDialog(context);
+                            if (user != null) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('Login Berhasil!')),
+                              );
+                              Navigator.pushReplacementNamed(context, "/");
+                            }
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: AppColor.ungu,
@@ -225,7 +242,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   Text("Don't have an account?"),
                   TextButton(
                     onPressed: () {
-                      
+                      Navigator.pushNamed(context, "/register");
                     }, 
                     child: Text(
                       "Register",
