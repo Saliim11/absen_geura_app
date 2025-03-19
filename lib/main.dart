@@ -1,6 +1,7 @@
 import 'package:absen_geura/pages/auth_screen/login_screen.dart';
 import 'package:absen_geura/pages/auth_screen/register_screen.dart';
 import 'package:absen_geura/pages/main_screen.dart';
+import 'package:absen_geura/pages/splash_screen.dart';
 import 'package:absen_geura/service/firebase/firebase_options.dart';
 import 'package:absen_geura/service/provider/absen_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -32,11 +33,12 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      initialRoute: "/login",
+      initialRoute: "/splash",
       routes: {
         "/" : (context) => MainScreen(),
         "/register" : (context) => RegisterScreen(),
         "/login" : (context) => LoginScreen(),
+        "/splash" : (context) => SplashScreen()
       }
     );
   }

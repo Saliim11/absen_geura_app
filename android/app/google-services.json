@@ -4,6 +4,7 @@
     "project_id": "absengeura",
     "storage_bucket": "absengeura.firebasestorage.app"
   },
+  
   "client": [
     {
       "client_info": {
@@ -12,7 +13,20 @@
           "package_name": "com.saliim.absengeura"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "328544621563-gksk8vqdtrimo6qpvgah1lqmnvs3sr2b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.saliim.absengeura",
+            "certificate_hash": "1e1b44a5447b225a3ab6538ca5ca35e31d476e4e"
+          }
+        },
+        {
+          "client_id": "328544621563-k1je1abtlpgka6ml6l21jb7p4so09g4a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyDfuwqi9FHy9Ja1OoeGKSmXY40x9Pa8dm0"
@@ -20,10 +34,26 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "328544621563-k1je1abtlpgka6ml6l21jb7p4so09g4a.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "328544621563-s8uudc59acu9hcen0mc6qk6kk47fvlp8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.absenGeura"
+              }
+            }
+          ]
         }
       }
     }
   ],
-  "configuration_version": "1"
+  "configuration_version": "1",
+  "dependencies": {
+      "classpath": "com.google.gms:google-services:4.3.15"
+  }
+
 }

@@ -1,6 +1,7 @@
 import 'package:absen_geura/pages/auth_screen/widgets/loading_widget.dart';
-import 'package:absen_geura/pages/main_screen.dart';
+import 'package:absen_geura/pages/auth_screen/widgets/warning_dialog.dart';
 import 'package:absen_geura/service/firebase/auth_service.dart';
+import 'package:absen_geura/service/shared_preferences/prefs_handler.dart';
 import 'package:absen_geura/utils/app_color.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -132,6 +133,7 @@ class LoginScreen extends StatelessWidget {
                             );
                             // hideLoadingDialog(context);
                             if (user != null) {
+                              PrefsHandler.saveId(user.email!);
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(content: Text('Login Berhasil!')),
                               );
@@ -169,8 +171,20 @@ class LoginScreen extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width /5,
                     child: ElevatedButton(
-                      onPressed: () {
-                        
+                      onPressed: () async {
+                        showLoadingDialog(context);
+
+                        User? user = await authService.signInWithGoogle();
+
+                        hideLoadingDialog(context);
+
+                        if (user != null) {
+                          PrefsHandler.saveId(user.email!);
+                          Navigator.pushReplacementNamed(context, "/");
+                        } else {
+                          showWarningAuth(
+                              context, 'Gagal melakukan login dengan Google.');
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(5)),
