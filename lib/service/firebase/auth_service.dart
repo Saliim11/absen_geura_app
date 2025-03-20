@@ -1,10 +1,7 @@
-import 'dart:convert';
-
 import 'package:absen_geura/models/user_model.dart';
 import 'package:absen_geura/pages/auth_screen/widgets/warning_dialog.dart';
 import 'package:absen_geura/service/encrypt/encrypt.dart';
 import 'package:absen_geura/service/firebase/firestore_services/user_service.dart';
-import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';

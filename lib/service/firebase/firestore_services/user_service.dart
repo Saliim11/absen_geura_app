@@ -6,7 +6,7 @@ class UserService {
 
   Future<void> saveUserData(UserModel user) async {
     try {
-      await _firestore.collection('users').doc(user.uid).set(user.toMap());
+      await _firestore.collection('users_AG').doc(user.uid).set(user.toMap());
     } catch (e) {
       print('Error saving user data: $e');
     }
