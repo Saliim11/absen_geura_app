@@ -7,6 +7,7 @@ class RegisterScreen extends StatelessWidget {
   RegisterScreen({super.key});
 
   final TextEditingController emailController = TextEditingController();
+  final TextEditingController nameController = TextEditingController();
   final TextEditingController passwordController = TextEditingController();
   final AuthService authService = AuthService();
 
@@ -23,6 +24,10 @@ class RegisterScreen extends StatelessWidget {
               decoration: InputDecoration(labelText: 'Email'),
             ),
             TextField(
+              controller: nameController,
+              decoration: InputDecoration(labelText: 'Full Name'),
+            ),
+            TextField(
               controller: passwordController,
               decoration: InputDecoration(labelText: 'Password'),
               obscureText: true,
@@ -34,6 +39,7 @@ class RegisterScreen extends StatelessWidget {
                   context,
                   emailController.text,
                   passwordController.text,
+                  nameController.text
                 );
                 // hideLoadingDialog(context);
                 if (user != null) {

@@ -1,4 +1,10 @@
+import 'dart:convert';
+
+import 'package:absen_geura/models/user_model.dart';
 import 'package:absen_geura/pages/auth_screen/widgets/warning_dialog.dart';
+import 'package:absen_geura/service/encrypt/encrypt.dart';
+import 'package:absen_geura/service/firebase/firestore_services/user_service.dart';
+import 'package:crypto/crypto.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -29,7 +35,20 @@ class AuthService {
       UserCredential userCredential =
           await _auth.signInWithCredential(credential);
 
-      return userCredential.user;
+      final user = userCredential.user!;
+      
+      // Buat instance UserModel
+      UserModel userModel = UserModel(
+        uid: user.uid,
+        name: user.displayName ?? '',
+        email: user.email ?? '',
+        password: '',
+      );
+
+      // Simpan ke Firestore
+      await UserService().saveUserData(userModel);
+
+      return user;
     } on FirebaseAuthException catch (e) {
       print('Error: ${e.message}');
       return null;
@@ -42,6 +61,7 @@ class AuthService {
         email: email,
         password: password,
       );
+
       return userCredential.user;
     } on FirebaseAuthException catch (e){
       // hideLoadingDialog(context);
@@ -62,13 +82,18 @@ class AuthService {
     }
   }
 
-  Future<User?> registerWithEmailAndPassword(BuildContext context, String email, String password) async {
+  Future<User?> registerWithEmailAndPassword(BuildContext context, String email, String password, String name) async {
     try {
       UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
-      return userCredential.user;
+      final user = userCredential.user;
+      String encryptedPass = encryptPassword(password);
+      UserModel userModel = UserModel(uid: user!.uid, name: name, email: email, password: encryptedPass);
+      await UserService().saveUserData(userModel);
+
+      return user;
     } on FirebaseAuthException catch (e){
       // hideLoadingDialog(context);
       if (e.code == 'invalid-email') {
@@ -85,7 +110,6 @@ class AuthService {
       return null;
     }
   }
-  
 
   Future<void> signOut() async {
     await _auth.signOut();
