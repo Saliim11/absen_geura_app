@@ -1,6 +1,6 @@
 import 'package:absen_geura/pages/auth_screen/widgets/loading_widget.dart';
 import 'package:absen_geura/pages/auth_screen/widgets/warning_dialog.dart';
-import 'package:absen_geura/service/firebase/auth_service.dart';
+import 'package:absen_geura/service/firebase/auth/auth_service.dart';
 import 'package:absen_geura/service/provider/widget_provider.dart';
 import 'package:absen_geura/service/shared_preferences/prefs_handler.dart';
 import 'package:absen_geura/utils/constant/app_btn_style.dart';

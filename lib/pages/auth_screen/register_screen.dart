@@ -1,6 +1,6 @@
-import 'package:absen_geura/pages/auth_screen/widgets/role_dropdown.dart';
+import 'package:absen_geura/utils/widgets/role_dropdown.dart';
 import 'package:absen_geura/pages/auth_screen/widgets/textfield.dart';
-import 'package:absen_geura/service/firebase/auth_service.dart';
+import 'package:absen_geura/service/firebase/auth/auth_service.dart';
 import 'package:absen_geura/service/provider/widget_provider.dart';
 import 'package:absen_geura/utils/constant/app_btn_style.dart';
 import 'package:absen_geura/utils/constant/app_color.dart';
@@ -70,7 +70,10 @@ class RegisterScreen extends StatelessWidget {
                     context,
                     _emailCont.text,
                     _passCont.text,
-                    _nameCont.text
+                    _nameCont.text,
+                    _phoneCont.text,
+                    _cityCont.text,
+                    provider.selectedRole
                   );
                   // hideLoadingDialog(context);
                   if (user != null) {

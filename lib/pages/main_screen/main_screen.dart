@@ -1,4 +1,4 @@
-import 'package:absen_geura/service/firebase/auth_service.dart';
+import 'package:absen_geura/service/firebase/auth/auth_service.dart';
 import 'package:absen_geura/service/shared_preferences/prefs_handler.dart';
 import 'package:flutter/material.dart';
 

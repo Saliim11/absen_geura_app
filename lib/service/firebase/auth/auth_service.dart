@@ -1,7 +1,7 @@
 import 'package:absen_geura/models/user_model.dart';
 import 'package:absen_geura/pages/auth_screen/widgets/warning_dialog.dart';
 import 'package:absen_geura/service/encrypt/encrypt.dart';
-import 'package:absen_geura/service/firebase/firestore_services/user_service.dart';
+import 'package:absen_geura/service/firebase/firestore/user_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -40,6 +40,9 @@ class AuthService {
         name: user.displayName ?? '',
         email: user.email ?? '',
         password: '',
+        phone: user.phoneNumber ?? '',
+        city: '',
+        role: 'default'
       );
 
       // Simpan ke Firestore
@@ -79,7 +82,7 @@ class AuthService {
     }
   }
 
-  Future<User?> registerWithEmailAndPassword(BuildContext context, String email, String password, String name) async {
+  Future<User?> registerWithEmailAndPassword(BuildContext context, String email, String password, String name, String phone, String city, String role) async {
     try {
       UserCredential userCredential = await _auth.createUserWithEmailAndPassword(
         email: email,
@@ -87,7 +90,7 @@ class AuthService {
       );
       final user = userCredential.user;
       String encryptedPass = encryptPassword(password);
-      UserModel userModel = UserModel(uid: user!.uid, name: name, email: email, password: encryptedPass);
+      UserModel userModel = UserModel(uid: user!.uid, name: name, email: email, password: encryptedPass, phone: phone, city: city, role: role);
       await UserService().saveUserData(userModel);
 
       return user;
