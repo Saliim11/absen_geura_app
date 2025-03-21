@@ -6,7 +6,15 @@ class UserService {
 
   Future<void> saveUserData(UserModel user) async {
     try {
-      await _firestore.collection('users_AG').doc(user.uid).set(user.toMap());
+      DocumentSnapshot doc = await _firestore.collection('users_AG').doc(user.uid).get();
+
+      if (!doc.exists) {
+        await _firestore.collection('users_AG').doc(user.uid).set(user.toMap());
+        print("Berhasil simpan data user baru");
+      } else {
+        print("sudah ada akun jadi nda buat baru");
+      }
+
     } catch (e) {
       print('Error saving user data: $e');
     }

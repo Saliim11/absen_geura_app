@@ -31,7 +31,7 @@ class LoginScreen extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "Welcome Back",
+                  "Welcome Gess",
                   style: TextStyle(
                     fontSize: 30,
                     fontWeight: FontWeight.bold,
@@ -42,7 +42,7 @@ class LoginScreen extends StatelessWidget {
               Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
-                  "Welcome back to AbsenGeuraa. Have a good time",
+                  "Hayang Absen cepet ceunah? AbsenGeuraa",
                   style: TextStyle(
                     color: AppColor.darkMoca
                   ),
@@ -202,12 +202,20 @@ class LoginScreen extends StatelessWidget {
                         style: ElevatedButton.styleFrom(
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
                           elevation: 5,
-                          backgroundColor: Colors.white
+                          backgroundColor: AppColor.darkMoca
                         ),
-                        child: SizedBox(
-                          width: 40,
-                          height: 40,
-                          child: Image.asset("assets/google.png"),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            SizedBox(
+                              width: 40,
+                              height: 40,
+                              child: Image.asset("assets/image/google.png"),
+                            ),
+                            Text("Sign in with Google",style: TextStyle(
+                              color: Colors.white
+                            )),
+                          ],
                         ),
                       ),
                     ),
