@@ -1,10 +1,14 @@
 import 'package:absen_geura/pages/auth_screen/widgets/loading_widget.dart';
 import 'package:absen_geura/pages/auth_screen/widgets/warning_dialog.dart';
 import 'package:absen_geura/service/firebase/auth_service.dart';
+import 'package:absen_geura/service/provider/widget_provider.dart';
 import 'package:absen_geura/service/shared_preferences/prefs_handler.dart';
-import 'package:absen_geura/utils/app_color.dart';
+import 'package:absen_geura/utils/constant/app_btn_style.dart';
+import 'package:absen_geura/utils/constant/app_color.dart';
+import 'package:absen_geura/utils/constant/app_text_style.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -15,8 +19,10 @@ class LoginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final provider = Provider.of<WidgetProvider>(context);
     return Scaffold(
       backgroundColor: AppColor.moca,
+      resizeToAvoidBottomInset: false,
       body: Container(
         margin: EdgeInsets.only(top: MediaQuery.of(context).size.height * 0.1),
         padding: EdgeInsets.all(25),
@@ -32,11 +38,7 @@ class LoginScreen extends StatelessWidget {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "Welcome Gess",
-                  style: TextStyle(
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                    color: AppColor.darkMoca
-                  ),
+                  style: AppTS.header,
                 ),
               ),
               Align(
@@ -86,7 +88,7 @@ class LoginScreen extends StatelessWidget {
                           ),
                           TextField(
                             controller: _passwordCont,
-                            obscureText: true,
+                            obscureText: provider.isVisibleLog,
                             style: TextStyle(
                               color: AppColor.darkMoca
                             ),
@@ -97,7 +99,13 @@ class LoginScreen extends StatelessWidget {
                                 color: AppColor.moca,
                                 fontSize: 14
                               ),
-                              prefixIcon: Icon(Icons.lock_outline, color: AppColor.moca,)
+                              prefixIcon: Icon(Icons.lock_outline, color: AppColor.moca,),
+                              suffixIcon: IconButton(
+                                onPressed: provider.changeVisibleLog,
+                                icon: provider.isVisibleLog? 
+                                Icon(Icons.visibility_off_outlined, color: AppColor.darkMoca,) :
+                                Icon(Icons.visibility_outlined, color: AppColor.darkMoca)
+                              ),
                             ),
                           ),
                         ],
@@ -147,14 +155,8 @@ class LoginScreen extends StatelessWidget {
                               Navigator.pushReplacementNamed(context, "/");
                             }
                           },
-                          style: ElevatedButton.styleFrom(
-                            backgroundColor: AppColor.darkMoca,
-                            foregroundColor: Colors.white,
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8)
-                            )
-                          ),
-                          child: Text("Login"),
+                          style: AppBtnStyle.coklat,
+                          child: Text("Login", style: AppTS.boldWhite,),
                         ),
                       ),
                     ),
@@ -212,9 +214,7 @@ class LoginScreen extends StatelessWidget {
                               height: 40,
                               child: Image.asset("assets/image/google.png"),
                             ),
-                            Text("Sign in with Google",style: TextStyle(
-                              color: Colors.white
-                            )),
+                            Text("Sign in with Google",style: AppTS.boldWhite),
                           ],
                         ),
                       ),
@@ -239,10 +239,7 @@ class LoginScreen extends StatelessWidget {
                     }, 
                     child: Text(
                       "Register",
-                      style: TextStyle(
-                        color: AppColor.darkMoca,
-                        fontWeight: FontWeight.w900,
-                      ),
+                      style: AppTS.boldDarkMoca,
                     )
                   )
                 ],
