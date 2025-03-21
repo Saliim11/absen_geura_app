@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 class WidgetProvider with ChangeNotifier {
   // visibility password register
-  bool _isVisibleReg = false;
+  bool _isVisibleReg = true;
   bool get isVisibleReg => _isVisibleReg;
 
   void changeVisibleReg(){
@@ -12,7 +12,7 @@ class WidgetProvider with ChangeNotifier {
   } 
 
   // visibility password login
-  bool _isVisibleLog = false;
+  bool _isVisibleLog = true;
   bool get isVisibleLog => _isVisibleLog;
 
   void changeVisibleLog(){
