@@ -78,7 +78,10 @@ class AbsenProvider with ChangeNotifier {
       );
     } finally {
       _isLoading = false;
+      _image = null;
       notifyListeners();
     }
   }
+
+  void refresh() => notifyListeners();
 }

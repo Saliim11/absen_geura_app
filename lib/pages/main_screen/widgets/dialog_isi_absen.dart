@@ -2,12 +2,14 @@ import 'dart:io';
 
 import 'package:absen_geura/service/provider/absen_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 void dialogIsiAbsen(BuildContext context, AbsenProvider prov){
   showDialog(
     context: context,
     builder: (context) {
-      File? image = prov.image;
+      File? image = context.watch<AbsenProvider>().image;
+      // File? image = prov.image;
       bool isLoading = prov.isLoading;
 
       return AlertDialog(
@@ -28,7 +30,10 @@ void dialogIsiAbsen(BuildContext context, AbsenProvider prov){
                 ),
           const SizedBox(height: 12),
           ElevatedButton(
-            onPressed: () => prov.pickImage(),
+            onPressed: () {
+              prov.pickImage();
+              // prov.refresh();
+            } ,
             child: const Text('Upload Bukti'),
           ),
         ],
