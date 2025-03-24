@@ -1,5 +1,8 @@
+import 'package:absen_geura/pages/main_screen/widgets/dialog_isi_absen.dart';
+import 'package:absen_geura/service/provider/absen_provider.dart';
 import 'package:absen_geura/utils/constant/app_color.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class MainScreen extends StatelessWidget {
   MainScreen({super.key});
@@ -7,6 +10,8 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final absenProv = Provider.of<AbsenProvider>(context);
+
     return Scaffold(
       backgroundColor: AppColor.moca,
       body: Stack(
@@ -85,9 +90,7 @@ class MainScreen extends StatelessWidget {
         width: 50,
         child: FittedBox(
           child: FloatingActionButton(
-            onPressed: () {
-              
-            },
+            onPressed: () => dialogIsiAbsen(context, absenProv),
             backgroundColor: AppColor.darkMoca,
             shape: CircleBorder(),
             child: Icon(Icons.library_add_check_rounded, color: AppColor.beige, size: 30,),
