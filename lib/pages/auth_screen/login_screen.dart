@@ -154,7 +154,7 @@ class LoginScreen extends StatelessWidget {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(content: Text('Login Berhasil!')),
                               );
-                              Navigator.pushReplacementNamed(context, "/");
+                              Navigator.pushReplacementNamed(context, "/", arguments: user.uid);
                             }
                           },
                           style: AppBtnStyle.coklat,
@@ -198,7 +198,7 @@ class LoginScreen extends StatelessWidget {
                           if (user != null) {
                             PrefsHandler.saveId(user.uid);
                             context.read<UserProvider>().ambilUser(user.uid);
-                            Navigator.pushReplacementNamed(context, "/");
+                            Navigator.pushReplacementNamed(context, "/", arguments: user.uid);
                           } else {
                             showWarningAuth(
                                 context, 'Gagal melakukan login dengan Google.');

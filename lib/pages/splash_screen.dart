@@ -22,7 +22,8 @@ class _SplashScreenState extends State<SplashScreen> {
         Navigator.pushReplacementNamed(context, "/login");
       } else {
         context.read<UserProvider>().ambilUser(uid);
-        Navigator.pushReplacementNamed(context, "/");
+        //kirim uid secara langsung
+        Navigator.pushReplacementNamed(context, "/", arguments: uid);
       }
       
     });
