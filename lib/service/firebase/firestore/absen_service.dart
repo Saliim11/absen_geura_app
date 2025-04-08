@@ -12,7 +12,7 @@ class AbsenService {
     try {
       await _absenAll
           .doc(tgl)
-          .collection("role")
+          .collection(role)
           .doc(absen.uid)
           .set(absen.toMap());
 
