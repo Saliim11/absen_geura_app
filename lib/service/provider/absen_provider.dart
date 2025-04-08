@@ -30,8 +30,13 @@ class AbsenProvider with ChangeNotifier {
     }
   }
 
+  // Future<void> resetImage() async{
+  //   _image = await null;
+  //   notifyListeners();
+  // }
+
   // Fungsi untuk menyimpan absen ke Firestore
-  Future<void> submitAbsen(BuildContext context) async {
+  Future<void> submitAbsen(BuildContext context, String role) async {
     if (_image == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Silakan ambil gambar terlebih dahulu!')),
@@ -64,7 +69,8 @@ class AbsenProvider with ChangeNotifier {
       );
 
       // Simpan data ke Firestore
-      await _absenService.saveAbsen(absen);
+      await _absenService.saveAbsenByUser(absen);
+      await _absenService.saveAbsen(absen, role);
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Absen berhasil! Status: $status')),
@@ -83,5 +89,6 @@ class AbsenProvider with ChangeNotifier {
     }
   }
 
-  void refresh() => notifyListeners();
+  
+
 }

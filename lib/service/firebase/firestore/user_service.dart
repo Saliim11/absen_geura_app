@@ -19,4 +19,21 @@ class UserService {
       print('Error saving user data: $e');
     }
   }
+
+  Future<UserModel?> getUserData(String uid) async {
+  try {
+    DocumentSnapshot doc = await _firestore.collection('users_AG').doc(uid).get();
+
+    if (doc.exists) {
+      // Convert data Firestore ke UserModel
+      return UserModel.fromMap(doc.data() as Map<String, dynamic>);
+    } else {
+      print("User tidak ditemukan di Firestore");
+      return null;
+    }
+  } catch (e) {
+    print("Error getting user data: $e");
+    return null;
+  }
+}
 }

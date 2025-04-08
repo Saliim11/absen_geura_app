@@ -1,6 +1,7 @@
 import 'package:absen_geura/pages/auth_screen/widgets/loading_widget.dart';
 import 'package:absen_geura/pages/auth_screen/widgets/warning_dialog.dart';
 import 'package:absen_geura/service/firebase/auth/auth_service.dart';
+import 'package:absen_geura/service/provider/user_provider.dart';
 import 'package:absen_geura/service/provider/widget_provider.dart';
 import 'package:absen_geura/service/shared_preferences/prefs_handler.dart';
 import 'package:absen_geura/utils/constant/app_btn_style.dart';
@@ -148,7 +149,8 @@ class LoginScreen extends StatelessWidget {
                             );
                             // hideLoadingDialog(context);
                             if (user != null) {
-                              PrefsHandler.saveId(user.email!);
+                              PrefsHandler.saveId(user.uid);
+                              context.read<UserProvider>().ambilUser(user.uid);
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(content: Text('Login Berhasil!')),
                               );
@@ -194,7 +196,8 @@ class LoginScreen extends StatelessWidget {
                           hideLoadingDialog(context);
                       
                           if (user != null) {
-                            PrefsHandler.saveId(user.email!);
+                            PrefsHandler.saveId(user.uid);
+                            context.read<UserProvider>().ambilUser(user.uid);
                             Navigator.pushReplacementNamed(context, "/");
                           } else {
                             showWarningAuth(

@@ -4,6 +4,7 @@ import 'package:absen_geura/pages/main_screen/main_screen.dart';
 import 'package:absen_geura/pages/splash_screen.dart';
 import 'package:absen_geura/service/firebase/firebase_options.dart';
 import 'package:absen_geura/service/provider/absen_provider.dart';
+import 'package:absen_geura/service/provider/user_provider.dart';
 import 'package:absen_geura/service/provider/widget_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ void main() async{
     providers: [
       ChangeNotifierProvider(create: (context) => WidgetProvider()),
       ChangeNotifierProvider(create: (context) => AbsenProvider(),),
+      ChangeNotifierProvider(create: (context) => UserProvider(),),
     ],
     child: const MyApp()
   ));

@@ -1,5 +1,6 @@
 import 'package:absen_geura/pages/main_screen/widgets/dialog_isi_absen.dart';
 import 'package:absen_geura/service/provider/absen_provider.dart';
+import 'package:absen_geura/service/shared_preferences/prefs_handler.dart';
 import 'package:absen_geura/utils/constant/app_color.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -19,9 +20,15 @@ class MainScreen extends StatelessWidget {
           Positioned(
             right: 20,
             top: 20,
-            child: CircleAvatar(
-              radius: 20,
-              backgroundColor: AppColor.darkMoca,
+            child: GestureDetector(
+              onTap: () {
+                PrefsHandler.removeUser();
+                Navigator.pushReplacementNamed(context, "/");
+              },
+              child: CircleAvatar(
+                radius: 20,
+                backgroundColor: AppColor.darkMoca,
+              ),
             ),
           ),
 
@@ -90,7 +97,10 @@ class MainScreen extends StatelessWidget {
         width: 50,
         child: FittedBox(
           child: FloatingActionButton(
-            onPressed: () => dialogIsiAbsen(context, absenProv),
+            onPressed: () async{
+              String role = await PrefsHandler.getRole();
+              dialogIsiAbsen(context, absenProv, role);
+            },
             backgroundColor: AppColor.darkMoca,
             shape: CircleBorder(),
             child: Icon(Icons.library_add_check_rounded, color: AppColor.beige, size: 30,),

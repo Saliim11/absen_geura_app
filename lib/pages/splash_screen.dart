@@ -1,5 +1,7 @@
+import 'package:absen_geura/service/provider/user_provider.dart';
 import 'package:absen_geura/service/shared_preferences/prefs_handler.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -15,10 +17,11 @@ class _SplashScreenState extends State<SplashScreen> {
     // TODO: implement initState
     super.initState();
     Future.delayed(Duration(seconds: 3), () async{
-      String email = await PrefsHandler.getEmail();
-      if (email.isEmpty || email == "") {
+      String uid = await PrefsHandler.getId();
+      if (uid.isEmpty || uid == "") {
         Navigator.pushReplacementNamed(context, "/login");
       } else {
+        context.read<UserProvider>().ambilUser(uid);
         Navigator.pushReplacementNamed(context, "/");
       }
       
