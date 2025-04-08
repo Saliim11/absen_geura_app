@@ -27,8 +27,7 @@ class MainScreen extends StatelessWidget {
             top: 20,
             child: GestureDetector(
               onTap: () {
-                PrefsHandler.removeUser();
-                Navigator.pushReplacementNamed(context, "/login");
+                Navigator.pushNamed(context, "/profile");
               },
               child: CircleAvatar(
                 radius: 20,

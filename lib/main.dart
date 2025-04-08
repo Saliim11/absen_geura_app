@@ -1,6 +1,7 @@
 import 'package:absen_geura/pages/auth_screen/login_screen.dart';
 import 'package:absen_geura/pages/auth_screen/register_screen.dart';
 import 'package:absen_geura/pages/main_screen/main_screen.dart';
+import 'package:absen_geura/pages/main_screen/profile_screen/profile_screen.dart';
 import 'package:absen_geura/pages/splash_screen.dart';
 import 'package:absen_geura/service/firebase/firebase_options.dart';
 import 'package:absen_geura/service/provider/absen_provider.dart';
@@ -41,6 +42,7 @@ class MyApp extends StatelessWidget {
       initialRoute: "/splash",
       routes: {
         "/" : (context) => MainScreen(),
+        "/profile" : (context) => ProfileScreen(),
         "/register" : (context) => RegisterScreen(),
         "/login" : (context) => LoginScreen(),
         "/splash" : (context) => SplashScreen()

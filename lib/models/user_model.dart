@@ -42,10 +42,10 @@ class UserModel {
       name: map['name'] ?? "",
       email: map['email'] ?? "",
       password: map['password'] ?? "",
-      phone: map['phone'] ?? "",
-      city: map['city'] ?? "",
-      role: map['role'] ?? "",
-      createdAt: map['createdAt'],
+      phone: map['phone'] ?? "-",
+      city: map['city'] ?? "-",
+      role: map['role'] ?? "default",
+      createdAt: map['createdAt'] ?? "",
     );
   }
 }
