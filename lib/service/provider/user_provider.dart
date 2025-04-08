@@ -15,6 +15,7 @@ class UserProvider with ChangeNotifier {
       print("Email: ${_user!.email}");
       print("Role: ${_user!.role}");
       PrefsHandler.saveRole(_user!.role);
+      PrefsHandler.saveNama(_user!.name);
       notifyListeners();
     }
   }

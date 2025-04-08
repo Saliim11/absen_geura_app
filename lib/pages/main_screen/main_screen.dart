@@ -172,7 +172,8 @@ class MainScreen extends StatelessWidget {
           child: FloatingActionButton(
             onPressed: () async{
               String role = await PrefsHandler.getRole();
-              dialogIsiAbsen(context, absenProv, role);
+              String nama = await PrefsHandler.getNama();
+              dialogIsiAbsen(context, absenProv, nama, role);
             },
             backgroundColor: AppColor.darkMoca,
             shape: CircleBorder(),

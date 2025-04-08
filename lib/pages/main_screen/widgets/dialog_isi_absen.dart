@@ -4,7 +4,7 @@ import 'package:absen_geura/service/provider/absen_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-void dialogIsiAbsen(BuildContext context, AbsenProvider prov, String role){
+void dialogIsiAbsen(BuildContext context, AbsenProvider prov, String nama, String role){
   showDialog(
     context: context,
     builder: (context) {
@@ -41,7 +41,7 @@ void dialogIsiAbsen(BuildContext context, AbsenProvider prov, String role){
         isLoading
             ? const CircularProgressIndicator()
             : ElevatedButton(
-                onPressed: () => prov.submitAbsen(context, role),
+                onPressed: () => prov.submitAbsen(context, nama, role),
                 child: const Text('Absen'),
               ),
       ],

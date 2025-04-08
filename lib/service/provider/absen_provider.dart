@@ -36,7 +36,7 @@ class AbsenProvider with ChangeNotifier {
   // }
 
   // Fungsi untuk menyimpan absen ke Firestore
-  Future<void> submitAbsen(BuildContext context, String role) async {
+  Future<void> submitAbsen(BuildContext context, String nama, String role) async {
     if (_image == null) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Silakan ambil gambar terlebih dahulu!')),
@@ -63,6 +63,7 @@ class AbsenProvider with ChangeNotifier {
       // Buat instance dari AbsenModel
       AbsenModel absen = AbsenModel(
         uid: user.uid,
+        nama: nama,
         waktuHadir: waktuHadir,
         imageUrl: imageUrl,
         status: status,
