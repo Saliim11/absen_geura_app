@@ -1,7 +1,8 @@
 import 'package:absen_geura/pages/auth_screen/login_screen.dart';
 import 'package:absen_geura/pages/auth_screen/register_screen.dart';
-import 'package:absen_geura/pages/main_screen/main_screen.dart';
-import 'package:absen_geura/pages/main_screen/profile_screen/profile_screen.dart';
+import 'package:absen_geura/pages/section_admin/admin_screen.dart';
+import 'package:absen_geura/pages/section_user/main_screen/main_screen.dart';
+import 'package:absen_geura/pages/section_user/profile_screen/profile_screen.dart';
 import 'package:absen_geura/pages/splash_screen.dart';
 import 'package:absen_geura/service/firebase/firebase_options.dart';
 import 'package:absen_geura/service/provider/absen_provider.dart';
@@ -45,7 +46,8 @@ class MyApp extends StatelessWidget {
         "/profile" : (context) => ProfileScreen(),
         "/register" : (context) => RegisterScreen(),
         "/login" : (context) => LoginScreen(),
-        "/splash" : (context) => SplashScreen()
+        "/splash" : (context) => SplashScreen(),
+        "/admin" : (context) => AdminScreen(),
       }
     );
   }

@@ -1,6 +1,6 @@
-import 'package:absen_geura/pages/main_screen/widgets/dialog_detail_absen.dart';
-import 'package:absen_geura/pages/main_screen/widgets/dialog_isi_absen.dart';
-import 'package:absen_geura/pages/main_screen/widgets/highlight_card.dart';
+import 'package:absen_geura/pages/section_user/main_screen/widgets/dialog_detail_absen.dart';
+import 'package:absen_geura/pages/section_user/main_screen/widgets/dialog_isi_absen.dart';
+import 'package:absen_geura/pages/section_user/main_screen/widgets/highlight_card.dart';
 import 'package:absen_geura/service/firebase/firestore/absen_service.dart';
 import 'package:absen_geura/service/provider/absen_provider.dart';
 import 'package:absen_geura/service/shared_preferences/prefs_handler.dart';
