@@ -151,10 +151,15 @@ class LoginScreen extends StatelessWidget {
                             if (user != null) {
                               PrefsHandler.saveId(user.uid);
                               context.read<UserProvider>().ambilUser(user.uid);
+
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(content: Text('Login Berhasil!')),
                               );
-                              Navigator.pushReplacementNamed(context, "/", arguments: user.uid);
+                              if (user.email == "admin@gmail.com") {
+                                Navigator.pushReplacementNamed(context, "/admin", arguments: user.uid);
+                              } else {
+                                Navigator.pushReplacementNamed(context, "/", arguments: user.uid);
+                              }
                             }
                           },
                           style: AppBtnStyle.coklat,

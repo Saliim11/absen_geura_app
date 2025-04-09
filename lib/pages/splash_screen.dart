@@ -18,12 +18,18 @@ class _SplashScreenState extends State<SplashScreen> {
     super.initState();
     Future.delayed(Duration(seconds: 3), () async{
       String uid = await PrefsHandler.getId();
+      String role = await PrefsHandler.getRole();
       if (uid.isEmpty || uid == "") {
         Navigator.pushReplacementNamed(context, "/login");
       } else {
         context.read<UserProvider>().ambilUser(uid);
-        //kirim uid secara langsung
-        Navigator.pushReplacementNamed(context, "/", arguments: uid);
+
+        if (role == "admin") {
+          Navigator.pushReplacementNamed(context, "/admin");
+        } else {
+          //kirim uid secara langsung
+          Navigator.pushReplacementNamed(context, "/", arguments: uid);
+        }
       }
       
     });

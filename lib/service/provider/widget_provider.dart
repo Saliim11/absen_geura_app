@@ -1,5 +1,6 @@
 import 'package:absen_geura/utils/data/roles.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class WidgetProvider with ChangeNotifier {
   // visibility password register
@@ -28,4 +29,24 @@ class WidgetProvider with ChangeNotifier {
     _selectedRole = value;
     notifyListeners();
   }
+
+
+  TextEditingController _selectedDate = new TextEditingController();
+  TextEditingController get selectedDate => _selectedDate;
+
+  void pickDate(BuildContext context) async {
+    DateTime? pickedDate = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2025),
+      lastDate: DateTime.now(),
+    );
+    if (pickedDate != null) {
+      String formattedDate = DateFormat("dd MMM yyyy").format(pickedDate);
+      _selectedDate.text = formattedDate;
+      notifyListeners();
+    }
+  }
+
+  
 }

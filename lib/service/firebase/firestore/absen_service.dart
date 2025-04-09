@@ -39,10 +39,19 @@ class AbsenService {
   }
   
   Stream<List<AbsenModel>> getAbsenByUser(String uid) {
-    return FirebaseFirestore.instance
-        .collection('AG_absen_by_user')
+    return _absenByUser
         .doc(uid)
         .collection('absen')
+        .orderBy('waktu_hadir', descending: true)
+        .snapshots()
+        .map((snapshot) =>
+            snapshot.docs.map((doc) => AbsenModel.fromMap(doc.data())).toList());
+  }
+
+  Stream<List<AbsenModel>> getAbsenAll(String tanggal, String role) {
+    return _absenAll
+        .doc(tanggal)
+        .collection(role)
         .orderBy('waktu_hadir', descending: true)
         .snapshots()
         .map((snapshot) =>

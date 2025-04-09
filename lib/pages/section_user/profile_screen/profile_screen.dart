@@ -1,4 +1,5 @@
 import 'package:absen_geura/models/user_model.dart';
+import 'package:absen_geura/service/firebase/auth/auth_service.dart';
 import 'package:absen_geura/service/provider/user_provider.dart';
 import 'package:absen_geura/service/shared_preferences/prefs_handler.dart';
 import 'package:absen_geura/utils/constant/app_color.dart';
@@ -144,6 +145,7 @@ class ProfileScreen extends StatelessWidget {
                   Center(
                     child: ElevatedButton.icon(
                       onPressed: () {
+                        AuthService().signOut();
                         PrefsHandler.removeUser();
                         Navigator.pushNamedAndRemoveUntil(context, "/login", ModalRoute.withName("/login"));
                       },
