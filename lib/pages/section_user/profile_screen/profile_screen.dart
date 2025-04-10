@@ -1,8 +1,8 @@
 import 'package:absen_geura/models/user_model.dart';
-import 'package:absen_geura/service/firebase/auth/auth_service.dart';
 import 'package:absen_geura/service/provider/user_provider.dart';
-import 'package:absen_geura/service/shared_preferences/prefs_handler.dart';
+import 'package:absen_geura/utils/constant/app_btn_style.dart';
 import 'package:absen_geura/utils/constant/app_color.dart';
+import 'package:absen_geura/utils/widgets/dialogs/logout_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -145,21 +145,11 @@ class ProfileScreen extends StatelessWidget {
                   Center(
                     child: ElevatedButton.icon(
                       onPressed: () {
-                        AuthService().signOut();
-                        PrefsHandler.removeUser();
-                        Navigator.pushNamedAndRemoveUntil(context, "/login", ModalRoute.withName("/login"));
+                        showLogoutDialog(context);
                       },
                       icon: const Icon(LucideIcons.logOut, color: Colors.white),
                       label: const Text("Logout"),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColor.merah,
-                        foregroundColor: Colors.white,
-                        padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 14),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(30),
-                        ),
-                        textStyle: const TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-                      ),
+                      style: AppBtnStyle.logout
                     ),
                   ),
                 ],

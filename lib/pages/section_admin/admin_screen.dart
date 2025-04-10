@@ -1,11 +1,10 @@
 import 'package:absen_geura/models/absen_model.dart';
-import 'package:absen_geura/service/firebase/auth/auth_service.dart';
 import 'package:absen_geura/service/firebase/firestore/absen_service.dart';
 import 'package:absen_geura/service/provider/widget_provider.dart';
-import 'package:absen_geura/service/shared_preferences/prefs_handler.dart';
 import 'package:absen_geura/utils/constant/app_color.dart';
 import 'package:absen_geura/utils/constant/app_text_style.dart';
 import 'package:absen_geura/utils/widgets/datepicker_textfield.dart';
+import 'package:absen_geura/utils/widgets/dialogs/logout_dialog.dart';
 import 'package:absen_geura/utils/widgets/role_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -99,9 +98,7 @@ class AdminScreen extends StatelessWidget {
         child: FittedBox(
           child: FloatingActionButton(
             onPressed: () {
-              AuthService().signOut();
-              PrefsHandler.removeUser();
-              Navigator.pushNamedAndRemoveUntil(context, "/login", ModalRoute.withName("/login"));
+              showLogoutDialog(context);
             },
             backgroundColor: AppColor.darkMoca,
             shape: CircleBorder(),
