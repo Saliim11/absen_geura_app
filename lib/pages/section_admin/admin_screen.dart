@@ -31,7 +31,7 @@ class AdminScreen extends StatelessWidget {
               Row(
                 children: [
                   Expanded(
-                    child: datePicker(wProv, context, selectedDate),
+                    child: datePicker(wProv, context),
                   ),
                   SizedBox(width: 5,),
                   Expanded(child: roleDropDown(wProv)),
