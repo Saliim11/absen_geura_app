@@ -1,3 +1,4 @@
+import 'package:absen_geura/pages/auth_screen/widgets/loading_widget.dart';
 import 'package:absen_geura/utils/widgets/role_dropdown.dart';
 import 'package:absen_geura/pages/auth_screen/widgets/textfield.dart';
 import 'package:absen_geura/service/firebase/auth/auth_service.dart';
@@ -65,7 +66,7 @@ class RegisterScreen extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () async {
-                  // showLoadingDialog(context);
+                  showLoadingDialog(context);
                   User? user = await authService.registerWithEmailAndPassword(
                     context,
                     _emailCont.text,
@@ -75,7 +76,7 @@ class RegisterScreen extends StatelessWidget {
                     _cityCont.text,
                     provider.selectedRole
                   );
-                  // hideLoadingDialog(context);
+                  hideLoadingDialog(context);
                   if (user != null) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text('Registrasi Berhasil!')),

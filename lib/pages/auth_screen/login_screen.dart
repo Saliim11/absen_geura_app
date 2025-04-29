@@ -141,13 +141,13 @@ class LoginScreen extends StatelessWidget {
                         height: 50,
                         child: ElevatedButton(
                           onPressed: () async{
-                            // showLoadingDialog(context);
+                            showLoadingDialog(context);
                             User? user = await authService.signInWithEmailAndPassword(
                               context,
                               _emailCont.text,
                               _passwordCont.text,
                             );
-                            // hideLoadingDialog(context);
+                            hideLoadingDialog(context);
                             if (user != null) {
                               PrefsHandler.saveId(user.uid);
                               context.read<UserProvider>().ambilUser(user.uid);
